@@ -6,6 +6,7 @@ import {ParamGuardProfileActive} from "./shared/guard/param-guard-profile.active
 import {ParamGuardLoginRegisterActive} from "./shared/guard/param-guard-login-register.active";
 import {ProjectComponent} from "./project/project.component";
 import {BoardComponent} from "./board/board.component";
+import {TaskComponent} from "./task/task.component";
 
 const routes: Routes = [
 
@@ -59,6 +60,16 @@ const routes: Routes = [
       authenticationFailureRedirectUrl: "/"
     }
   },
+  {
+    path: ':type/task',
+    component: TaskComponent,
+    canActivate: [ParamGuardProfileActive],
+    data: {
+      authenticationRequired: true,
+      authenticationFailureRedirectUrl: "/"
+    }
+  }
+  ,
   {
     path: '**',
     component: LoginComponent

@@ -1,0 +1,95 @@
+.task-form-section {
+  text-align: center;
+  width: 100%;
+  background-color: white;
+  margin: auto;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.h2-title {
+  font-size: 30px !important;
+}
+
+
+.task-form-article > form > article {
+  padding-top: 10px;
+}
+
+.task-form-description > textarea {
+  resize: none;
+}
+
+.task-form-story-point > input,
+.task-form-priority > select ,
+.task-form-status > select ,
+.task-form-board > select ,
+.task-form-project > select ,
+.task-form-assignedto > select ,
+.task-form-title > input ,
+.task-form-type > input {
+  width: 80%;
+  height: 30px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.task-form-project > select {
+  width: 25% !important;
+}
+
+.task-form-priority > select ,
+.task-form-status > select ,
+.task-form-board > select ,
+.task-form-assignedto > select {
+  width: 130px !important;
+}
+
+.task-form-description > textarea {
+  border-radius: 5px;
+  width: 80%;
+  border: 2px solid;
+}
+
+.task-form-flex {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.task-form-submit-btn {
+  margin-top: 20px;
+  padding-bottom: 20px;
+}
+
+.task-form-submit-btn > input {
+  width: 80%;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-weight: 800;
+  font-size: 15px;
+
+  background-color: #8EC5FC;
+  background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+}
+
+.task-form-submit-btn > input:hover {
+  cursor: pointer;
+}
+
+.task-form-submit-btn > input:active {
+  transform: translateY(2px);
+  background-image: linear-gradient(62deg, #73aee9 0%, #cdabec 100%);
+}
+
+.error {
+  border-color: red;
+  color: red;
+}
+
+.error-text {
+  color: red;
+}
+

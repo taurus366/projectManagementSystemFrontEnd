@@ -3,6 +3,8 @@ import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {IUSER} from "../shared/interfaces/IUSER";
 import {IBOARD} from "../shared/interfaces/IBOARD";
+import {IPROJECT} from "../shared/interfaces/IPROJECT";
+import {ITASKENUMS} from "../shared/interfaces/ITASKENUMS";
 
 
 const wanConnection = environment.apiUrl;
@@ -61,15 +63,48 @@ export class UserService {
   }
 
   populateUsersBoardCreate() {
-    return this.http.get<IBOARD[]>(`${wanConnection}/board/create`,{
+    return this.http.get<IUSER[]>(`${wanConnection}/board/create`,{
       observe:"response",
       withCredentials: true,
       responseType: 'json'
     })
   }
 
-  createNewBoard(data:{name:string,members:IBOARD[]}) {
+  createNewBoard(data:{name:string,members:IUSER[]}) {
     return this.http.post(`${wanConnection}/board/create`,data,{
+      observe:"response",
+      withCredentials: true,
+      responseType: 'json'
+    })
+  }
+
+  //TASK component
+  populateProjects() {
+    return this.http.get<IPROJECT[]>(`${wanConnection}/field/projects`,{
+      observe:"response",
+      withCredentials: true,
+      responseType: 'json'
+    })
+  }
+
+  populateBoards() {
+    return this.http.get<IBOARD[]>(`${wanConnection}/field/boards`,{
+      observe:"response",
+      withCredentials: true,
+      responseType: 'json'
+    })
+  }
+
+  populateEnums() {
+    return this.http.get<ITASKENUMS>(`${wanConnection}/field/enums`, {
+      observe:"response",
+      withCredentials: true,
+      responseType: 'json'
+    })
+  }
+
+  populateAssignedTo(id:number){
+    return this.http.get<IUSER[]>(`${wanConnection}/field/board/members/`+id,{
       observe:"response",
       withCredentials: true,
       responseType: 'json'

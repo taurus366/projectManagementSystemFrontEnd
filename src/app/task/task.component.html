@@ -1,0 +1,174 @@
+<div class="task-container">
+
+  <section class="task-form-section">
+
+    <article class="task-title-article">
+      <h2 class="h2-title">Task</h2>
+    </article>
+
+    <article class="task-form-article">
+
+      <form action="" method="post">
+
+        <article class="task-form-title">
+          <input type="text" name="" id="" placeholder="Title">
+        </article>
+
+        <article class="task-form-project">
+          <label for="project">Project</label>
+          <select name="Project" id="project">
+            <ng-template #loadedPr>
+              <option value="" selected hidden>Choose</option>
+              <option *ngFor="let project of projectAccountOwner" value="{{project.id}}">{{project.title}}</option>
+            </ng-template>
+
+            <ng-template #loading>
+              <option value="">Please wait while loading projects</option>
+            </ng-template>
+
+            <ng-template #emptyPr>
+              <option value="">You don't have any projects</option>
+            </ng-template>
+
+            <ng-container
+              [ngTemplateOutlet]="projectAccountOwner === undefined ? loadingPriority : projectAccountOwner.length == 0 ? emptyPr : loadedPr"></ng-container>
+
+          </select>
+        </article>
+
+        <article class="task-form-flex">
+
+          <article class="task-form-priority">
+            <label for="priority">Priority</label>
+
+            <select name="" id="priority">
+              <ng-template #loadingPriority>
+                <option value="">Loading</option>
+              </ng-template>
+
+              <ng-template #emptyPriority>
+                <option value="">Empty list</option>
+              </ng-template>
+
+              <ng-template #showEnumPriority>
+                <option *ngFor="let enumPriority of enums?.priority" value="{{enumPriority}}"
+                        [selected]="enumPriority === 'Low'">{{enumPriority}}</option>
+              </ng-template>
+
+              <ng-container
+                [ngTemplateOutlet]=" enums?.priority === undefined ? emptyPriority : enums?.priority?.length == 0 ? loadingPriority : showEnumPriority"></ng-container>
+            </select>
+          </article>
+
+          <article class="task-form-board">
+            <label for="board">Board</label>
+            <select #boardSelect name="" id="board" (change)="populateAssignedTo(boardSelect.value)">
+
+
+              <ng-template #loadingBoard>
+                <option value="">Please wait while loading</option>
+              </ng-template>
+
+              <ng-template #emptyBoard>empty board</ng-template>
+
+              <ng-template #showBoards>
+                <option value="" selected hidden>Choose</option>
+                <option *ngFor="let board of boards" value="{{board.id}}">{{board.name}}</option>
+              </ng-template>
+
+              <ng-container
+                [ngTemplateOutlet]="boards === undefined ? loadingBoard : boards.length == 0 ? emptyBoard : showBoards"></ng-container>
+
+            </select>
+          </article>
+
+        </article>
+
+        <article class="task-form-flex">
+          <!--TODO -> DO IT-->
+          <article class="task-form-assignedto">
+            <label for="assignedto">Assigned to</label>
+            <select name="assignedto" id="assignedto">
+
+              <ng-template #loadingAssignedTo>
+                <option value="">Loading</option>
+              </ng-template>
+
+              <ng-template #waitingToChooseBoard>
+                <option value="">Choose Board</option>
+              </ng-template>
+
+              <ng-template #emptyAssignedTo>
+                <option value="">Empty list</option>
+              </ng-template>
+
+              <ng-template #showAssignedTo>
+                <option selected hidden>Choose member</option>
+                <option *ngFor="let users of assignedTo" value="{{users.id}}">{{users.firstName + ' ' + users.lastName }}</option>
+              </ng-template>
+
+              <ng-container [ngTemplateOutlet]="(assignedTo === undefined && boards) ? waitingToChooseBoard: assignedTo === undefined ? loadingAssignedTo : assignedTo.length == 0 ? emptyAssignedTo : showAssignedTo"></ng-container>
+
+            </select>
+          </article>
+
+          <article class="task-form-status">
+            <label for="status">Status</label>
+            <select name="" id="status">
+
+              <ng-template #loadingStatus>
+                <option value="">Loading</option>
+              </ng-template>
+
+              <ng-template #emptyStatus>
+                <option value="">Empty list</option>
+              </ng-template>
+
+              <ng-template #showStatus>
+                <option *ngFor="let status of enums?.status | divideString:'_'" [selected]="status === 'New'"
+                        value="{{status}}">{{status}}</option>
+              </ng-template>
+
+              <ng-container
+                [ngTemplateOutlet]="enums?.status === undefined ? loadingStatus : enums?.status?.length == 0 ? emptyStatus : showStatus"></ng-container>
+
+
+            </select>
+          </article>
+
+        </article>
+
+
+        <article class="task-form-type">
+          <input type="text" name="" id="" placeholder="Type">
+        </article>
+
+        <article class="task-form-story-point">
+          <input type="number" name="" id="" placeholder="Story point">
+        </article>
+
+        <article class="task-form-description">
+
+          <article class="form-description-title">
+            <h1 class="no-margin">characters : <span>255</span></h1>
+          </article>
+
+          <textarea name="" id="" rows="4" placeholder="Description"></textarea>
+        </article>
+
+        <article class="error-text">
+          <p class="no-margin">Please check red border/s</p>
+        </article>
+
+        <article class="task-form-submit-btn">
+          <input type="submit" value="Create">
+        </article>
+
+      </form>
+
+
+    </article>
+
+  </section>
+
+</div>

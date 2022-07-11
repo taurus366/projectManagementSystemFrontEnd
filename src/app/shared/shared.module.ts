@@ -4,12 +4,14 @@ import {BooleansAndMethodsService} from "./booleansAndMethods.service";
 import { EmailValidatorDirective } from './email-validator.directive';
 import {ParamGuardProfileActive} from "./guard/param-guard-profile.active";
 import {ParamGuardLoginRegisterActive} from "./guard/param-guard-login-register.active";
+import {StringDivider} from "./filter/stringDivider";
 
 
 
 @NgModule({
   declarations: [
-    EmailValidatorDirective
+    EmailValidatorDirective,
+    StringDivider
   ],
   imports: [
     CommonModule
@@ -19,7 +21,8 @@ import {ParamGuardLoginRegisterActive} from "./guard/param-guard-login-register.
     ParamGuardLoginRegisterActive
   ],
   exports: [
-    EmailValidatorDirective
+    EmailValidatorDirective,
+    StringDivider
 
   ]
 })

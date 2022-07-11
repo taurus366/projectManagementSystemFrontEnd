@@ -10,21 +10,25 @@ import {ProjectComponent} from "./project/project.component";
 import {FormsModule} from "@angular/forms";
 import { BoardComponent } from './board/board.component';
 import {CommonModule} from "@angular/common";
+import { TaskComponent } from './task/task.component';
+import {SharedModule} from "./shared/shared.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     ProjectComponent,
-    BoardComponent
+    BoardComponent,
+    TaskComponent
   ],
   imports: [
     CommonModule,
     BrowserModule,
     AppRoutingModule,
-  AuthenticationModule,
+    AuthenticationModule,
     ProfileModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

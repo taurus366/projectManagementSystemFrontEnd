@@ -4,8 +4,7 @@ import {UserService} from "../authentication/user.service";
 import {BooleansAndMethodsService} from "../shared/booleansAndMethods.service";
 import {NgForm} from "@angular/forms";
 import {IBOARD} from "../shared/interfaces/IBOARD";
-import {filter} from "rxjs";
-
+import {IUSER} from "../shared/interfaces/IUSER";
 
 const navigateAfterCreateBoard: string = "/profile";
 
@@ -26,8 +25,8 @@ export class BoardComponent implements OnInit {
   isEditBoard: boolean = false;
   isNameIncorrect: boolean = false;
   isUsersToAddIncorrect: boolean = false;
-  usersFromDB: IBOARD[] | undefined;
-  usersToAdd: IBOARD[] | undefined;
+  usersFromDB: IUSER[] | undefined;
+  usersToAdd: IUSER[] | undefined;
 
   errorText: string = "";
 
@@ -137,7 +136,7 @@ export class BoardComponent implements OnInit {
   }
 
 //  USERS
-  addUserToBoard(user: IBOARD): void {
+  addUserToBoard(user: IUSER): void {
 
     if (this.usersToAdd == undefined) {
       this.usersToAdd = [user];
@@ -146,19 +145,19 @@ export class BoardComponent implements OnInit {
     }
     this.addUserToBoardRemoveFromDB(user);
   }
-  addUserToBoardRemoveFromDB(user: IBOARD) {
+  addUserToBoardRemoveFromDB(user: IUSER) {
     // @ts-ignore
     this.usersFromDB = this.usersFromDB.filter(value => value.id !== user.id);
   }
 
-  removeUserFromBoard(user: IBOARD) {
+  removeUserFromBoard(user: IUSER) {
 
     // @ts-ignore
     this.usersToAdd = this.usersToAdd.filter(value => value.id !== user.id);
 
     this.addUserToUsersFromDB(user);
   }
-  addUserToUsersFromDB(user: IBOARD) {
+  addUserToUsersFromDB(user: IUSER) {
     if (this.usersFromDB == undefined) {
       this.usersFromDB = [user];
     } else {
