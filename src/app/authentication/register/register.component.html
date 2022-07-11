@@ -1,0 +1,49 @@
+<div class="register-container">
+
+  <section class="register-form-section">
+
+    <article class="register-title-article">
+      <h2 class="no-margin">REGISTER FORM</h2>
+    </article>
+
+    <form #form="ngForm" action="" method="post" (ngSubmit)="register(form)">
+
+      <article class="register-form-first-name">
+
+        <input #firstName="ngModel" ngModel type="text" name="firstName" id="firstName" placeholder="First Name"
+               [class.error-border]="(firstName.touched && (firstName.value.length < 3 || firstName.value.length > 255) || isFirstNameIncorrect)"
+               [minlength]="3" [maxLength]="255" required>
+
+      </article>
+
+      <article class="register-form-last-name">
+
+        <input #lastName="ngModel" ngModel type="text" name="lastName" id="lastName" placeholder="Last Name"
+               [class.error-border]="(lastName.touched && (lastName.value.length < 3 || lastName.value.length > 255) || isLastNameIncorrect)"
+               [minlength]="3" [maxLength]="255" required>
+      </article>
+
+      <article class="register-form-email-address">
+
+        <input #email="ngModel" ngModel type="email" name="email" id="email" placeholder="Email Address"
+               [class.error-border]="(email.touched && (email.value.length > 255) || isEmailIncorrect)"
+               [maxLength]="255" required>
+
+      </article>
+
+      <article [class.padding]="errorText.length == 0" class="error-text">
+        <p class="no-margin" [innerText]="errorText" *ngIf="errorText.length > 0"></p>
+      </article>
+
+      <article class="register-form-submit-btn">
+        <input type="submit" value="Register">
+      </article>
+
+    </form>
+
+    <article class="already-registered-text-article">
+      <a href="" routerLink="/login" (click)="preventDefault($event)">Already registered?</a>
+    </article>
+
+  </section>
+</div>

@@ -1,0 +1,25 @@
+<div class="header-container">
+<section class="header-title-section">
+  <article class="header-title-article">
+    <h1>PROJECT MANAGEMENT SYSTEM</h1>
+  </article>
+
+</section>
+<section class="logged-profile-info" *ngIf="sharedService.user?.email != undefined">
+  <article class="profile-info-title">
+    <h1 class="no-margin">Hello, <span [innerText]="sharedService.user?.firstName"></span></h1>
+    <a class="profile-menu-bar" [class.active-menu]="isShowMenuBar" href="" (click)="preventDefault($event);isShowMenuBar = !isShowMenuBar"> <i class="fas fa-bars"></i></a>
+  </article>
+  <article class="profile-info-nav-article">
+    <nav class="nav-article-nav" *ngIf="isShowMenuBar">
+      <ul>
+        <li><a href="" routerLink="/profile" (click)="preventDefault($event);hideMenuBar()">Profile</a></li>
+        <li><a href=""  (click)="preventDefault($event);hideMenuBar()">Own Borders</a></li>
+        <li><a href="" (click)="preventDefault($event);hideMenuBar()">Own Tasks</a></li>
+        <li><a href="" (click)="preventDefault($event);hideMenuBar()">Own Projects</a></li>
+        <li><a href="" (click)="preventDefault($event);hideMenuBar();logout()">Log out</a></li>
+      </ul>
+    </nav>
+  </article>
+</section>
+</div>

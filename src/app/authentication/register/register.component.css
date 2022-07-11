@@ -1,0 +1,87 @@
+/*.register-form-section {*/
+/*  text-align: center;*/
+/*  width: 40%;*/
+/*  height: 360px;*/
+/*  background-color: white;*/
+/*  margin: auto;*/
+/*  border-radius: 5px;*/
+/*}*/
+
+.register-container {
+  text-align: center;
+  width: 40%;
+  height: 360px;
+  background-color: white;
+  margin: auto;
+  border-radius: 5px;
+}
+
+
+.register-title-article  {
+  font-family: 'Arima', cursive;
+  padding-top: 5px;
+}
+
+.register-form-first-name > input,
+.register-form-last-name > input,
+.register-form-email-address > input {
+  width: 80%;
+  margin-top: 30px;
+  height: 30px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.register-form-submit-btn > input {
+  width: 80%;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-weight: 800;
+  font-size: 15px;
+
+  background-color: #8EC5FC;
+  background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+}
+
+.register-form-submit-btn {
+  margin-top: 25px;
+}
+
+.register-form-submit-btn > input:hover {
+  cursor: pointer;
+}
+
+.register-form-submit-btn > input:active {
+  transform: translateY(2px);
+  background-image: linear-gradient(62deg, #73aee9 0%, #cdabec 100%);
+}
+
+.already-registered-text-article {
+  margin-top: 20px;
+}
+
+.already-registered-text-article > a {
+  color: rgb(197, 168, 168);
+  text-decoration: none;
+}
+
+.already-registered-text-article > a:active {
+  color: red;
+}
+
+.already-registered-text-article > a:hover {
+  color: rgb(141, 112, 112);
+}
+
+.error-text {
+  color: red;
+  margin-top: 15px;
+}
+
+.error-text.padding {
+  padding-top: 15px;
+}
+
+

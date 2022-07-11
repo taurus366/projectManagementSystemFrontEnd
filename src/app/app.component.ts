@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {BooleansAndMethodsService} from "./shared/booleansAndMethods.service";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'projectManagementSystemFrontEnd';
+
+  constructor(private sharedService: BooleansAndMethodsService) {
+  }
+
+  ngOnInit(): void {
+    this.sharedService
+      .checkUserInfoExistsThenUpdate();
+
+  }
+
 }
+

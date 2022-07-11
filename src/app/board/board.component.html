@@ -1,0 +1,104 @@
+<div class="board-container">
+
+  <section class="board-form-section">
+
+    <article class="board-title-article">
+      <h2 class="h2-title">Board</h2>
+    </article>
+
+
+    <article class="board-size-article">
+
+      <!--      TABLE 1-->
+      <article class="board-members-article">
+
+        <article class="board-members-title">
+          <h3>Members : <span>{{usersToAdd?.length || 0}}</span></h3>
+        </article>
+
+        <article class="board-members-table">
+          <table>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email Address</th>
+              <th>Edit</th>
+            </tr>
+
+            <tr *ngFor="let users of usersToAdd!">
+              <td>{{users.firstName}}</td>
+              <td>{{users.lastName}}</td>
+              <td>{{users.email}}</td>
+              <td><a href="#" class="table-edit-user-btn remove"
+                     (click)="removeUserFromBoard(users);preventDefault($event)"><i class="fa fa-times"></i></a></td>
+            </tr>
+
+            <!--  -->
+
+            <!--  -->
+          </table>
+        </article>
+
+        <article class="tables-error">
+          <p *ngIf="errorText.length > 0 &&( isNameIncorrect || isUsersToAddIncorrect)" [innerText]="errorText"></p>
+        </article>
+
+      </article>
+
+      <!--      TABLE 2-->
+      <article class="board-users-article">
+
+        <article class="board-users-title">
+          <h3>Profiles from Database</h3>
+        </article>
+
+        <article class="board-users-table">
+          <table>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email Address</th>
+              <th>Edit</th>
+            </tr>
+            <tr *ngFor="let usersFrDB of usersFromDB">
+              <td>{{usersFrDB.firstName}}</td>
+              <td>{{usersFrDB.lastName}}</td>
+              <td>{{usersFrDB.email}}</td>
+              <td><a href="#" class="table-edit-user-btn add"
+                     (click)="addUserToBoard(usersFrDB);preventDefault($event)"><i class="fas fa-check"></i></a></td>
+            </tr>
+            <!--  -->
+
+
+            <!--  -->
+          </table>
+        </article>
+
+        <article class="user-loading">
+          <p *ngIf="(usersFromDB == undefined || usersFromDB.length == 0) && (usersToAdd == undefined || usersToAdd.length == 0)">Please wait while users are loading</p>
+        </article>
+
+      </article>
+
+    </article>
+
+    <article class="board-form-article">
+
+      <form #form="ngForm" action="" method="post" (ngSubmit)="createBoard(form)">
+
+        <article class="board-form-name">
+          <input #name="ngModel" ngModel type="text" name="name" id="name" placeholder="Name" [class.error-border]="(name.touched && (name.value.length < 3 || name.value.length > 255)) || isNameIncorrect" [minlength]="3" [maxLength]="255" required>
+        </article>
+
+        <article class="board-form-submit-btn">
+          <input type="submit" value="Create / Save">
+        </article>
+      </form>
+
+    </article>
+
+
+  </section>
+
+
+</div>

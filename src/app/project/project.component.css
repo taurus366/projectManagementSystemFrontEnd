@@ -1,0 +1,65 @@
+
+.project-title-article {
+  font-size: 23px;
+  padding-top: 1px;
+}
+
+.project-form-section {
+  text-align: center;
+  width: 40%;
+  height: 360px;
+  background-color: white;
+  margin: auto;
+  border-radius: 5px;
+}
+
+.project-form-title > input,
+.project-form-key > input {
+  width: 80%;
+  height: 30px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.project-form-key > input {
+  margin-top: 50px;
+}
+
+.project-form-submit-btn {
+  margin-top: 70px;
+}
+
+.project-form-submit-btn > input {
+  width: 80%;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-weight: 800;
+  font-size: 15px;
+
+  background-color: #8EC5FC;
+  background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+}
+
+.project-form-submit-btn > input:hover {
+  cursor: pointer;
+}
+
+.project-form-submit-btn > input:active {
+  transform: translateY(2px);
+  background-image: linear-gradient(62deg, #73aee9 0%, #cdabec 100%);
+}
+
+.project-form-title,
+.project-form-key {
+  position: relative;
+}
+
+.error-text {
+  position: absolute;
+  left: 175px;
+  color: red;
+  font-weight: 600;
+  font-size: 18px;
+}

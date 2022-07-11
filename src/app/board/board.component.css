@@ -1,0 +1,100 @@
+.board-form-section {
+  text-align: center;
+  background-color: white;
+  margin: auto;
+  border-radius: 5px;
+}
+
+.board-title-article > h2 {
+  font-size: 35px;
+}
+
+.board-members-table,
+.board-users-table {
+  border: 1px solid black;
+  padding: 5px;
+  height: 250px;
+  overflow: auto;
+}
+
+.board-members-table > table > tbody > tr > th,
+.board-users-table > table > tbody > tr > th {
+  padding-right: 7px;
+}
+
+.board-members-table > table > tbody > tr:hover td,
+.board-users-table > table > tbody > tr:hover td {
+  background: rgba(168, 163, 163, 0.209);
+}
+
+.board-size-article {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.board-members-table,
+.board-users-table {
+  /* height: 250px; */
+  text-align: left;
+}
+
+.board-members-table > table  > tr,
+.board-users-table > table  > tr {
+  position: relative;
+}
+
+.board-members-table > table > tbody > tr > td,
+.board-users-table > table > tbody > tr > td {
+  padding: 6px 0 5px 0;
+}
+
+.table-edit-user-btn {
+  position: absolute;
+  right: 8px;
+  top: 6px;
+}
+
+.board-form-name > input {
+  width: 20%;
+  margin-top: 30px;
+  height: 30px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.board-form-submit-btn > input{
+  text-align: center;
+  margin: 20px auto;
+  width: 80%;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  font-weight: 800;
+  font-size: 15px;
+  background-color: #8EC5FC;
+  background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+}
+
+.board-form-submit-btn > input:hover {
+  cursor: pointer;
+}
+
+.board-form-submit-btn > input:active {
+  transform: translateY(2px);
+  background-image: linear-gradient(62deg, #73aee9 0%, #cdabec 100%);
+}
+
+.board-users-article {
+  position: relative;
+}
+.user-loading {
+  position: absolute;
+  bottom: 100px;
+  left: 40px;
+}
+
+.tables-error {
+  color: red;
+}

@@ -1,0 +1,46 @@
+<div class="project-container">
+
+  <section class="project-form-section">
+
+    <article class="project-title-article">
+      <h2 class="h2-title">Project</h2>
+    </article>
+
+    <article class="project-form-article">
+
+      <form #form="ngForm" action="" method="post" (ngSubmit)="createProject(form)">
+
+        <article class="project-form-title">
+          <input #title="ngModel" ngModel type="text" name="title" id="title" placeholder="Title" [class.error-border]="(title.touched && (title.value.length < 3 || title.value.length > 255) || isTitleIncorrect)" [minlength]="3" [maxLength]="255" required>
+          <article class="error-text">
+            <p *ngIf="isTitleIncorrect">Please check title</p>
+          </article>
+        </article>
+
+        <article class="project-form-key">
+          <input #key="ngModel" ngModel type="text" name="key" id="key" placeholder="Key" [class.error-border]="(key.touched && (key.value.length < 3 || key.value.length > 255) || isKeyIncorrect)" [minlength]="3" [maxLength]="255" required>
+          <article class="error-text">
+            <p *ngIf="errorText.length > 0" [innerText]="errorText">Please check key</p>
+          </article>
+        </article>
+
+        <article class="project-form-submit-btn">
+          <ng-container [ngTemplateOutlet]="isEditProject ? edit : create"></ng-container>
+        </article>
+
+        <ng-template #create>
+          <input type="submit" value="Create Project">
+        </ng-template>
+
+        <ng-template #edit>
+          <input type="submit" value="Edit Project">
+        </ng-template>
+
+
+      </form>
+
+    </article>
+
+  </section>
+
+</div>

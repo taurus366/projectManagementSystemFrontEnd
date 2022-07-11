@@ -1,0 +1,37 @@
+<div class="login-container">
+<section class="login-form-section">
+
+  <article class="login-title-article">
+    <h2 class="no-margin">LOGIN FORM</h2>
+  </article>
+
+  <article class="login-img-article">
+    <img src="assets/login/login-img.png" alt="img-logo">
+  </article>
+
+  <article class="login-form-article">
+
+    <form #form="ngForm" action="post" method="post" (ngSubmit)="login(form)">
+
+      <article class="login-form-email">
+
+        <input #email="ngModel" ngModel type="text" name="email" id="email" placeholder="Email Address" [class.error-border]="(email.touched && ( email.value.length == 0 || email.value.length > 255)) || isEmailIncorrect || email.touched && email.errors" emailValidator required>
+
+        <p class="no-margin email-error-text" [innerText]="errorText"></p>
+      </article>
+
+      <article class="login-form-submit-btn" [class.margin]="errorText.length == 0" >
+        <input type="submit" value="Login">
+      </article>
+
+    </form>
+
+  </article>
+
+
+  <article class="not-member-text-article">
+    <a href="" routerLink="/register" (click)="preventDefault($event)">Not a member?</a>
+  </article>
+
+</section>
+</div>

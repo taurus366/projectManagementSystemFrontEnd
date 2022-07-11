@@ -1,0 +1,35 @@
+.profile-container {
+  text-align: center;
+  width: 40%;
+  height: 360px;
+  background-color: white;
+  margin: auto;
+  border-radius: 5px;
+  position: relative;
+}
+
+.profile-container-nav {
+  padding-top: 25px;
+}
+
+.profile-container-nav > nav > ul {
+  list-style: none;
+}
+
+.profile-container-nav > nav > ul > li {
+  margin-top: 60px;
+}
+
+.profile-container-nav > nav > ul > li > a {
+  text-decoration: none;
+  color: black;
+  font-size: 25px;
+}
+
+.profile-container-nav > nav > ul > li > a:hover {
+  color: rgb(210, 0, 0) !important;
+}
+
+.profile-container-nav > nav > ul > li > a:active {
+  color: rgb(169, 96, 96) !important;
+}
