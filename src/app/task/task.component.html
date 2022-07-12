@@ -8,15 +8,15 @@
 
     <article class="task-form-article">
 
-      <form action="" method="post">
+      <form #form="ngForm" action="" method="post" (ngSubmit)="createNewTask(form)">
 
         <article class="task-form-title">
-          <input type="text" name="" id="" placeholder="Title">
+          <input #title="ngModel" ngModel type="text" name="title" id="title" placeholder="Title" [class.error-border]="(title.touched && (title.value.length < 3 || title.value.length > 255)) || isTitleIncorrect" required [minLength]="3" [maxLength]="255">
         </article>
 
         <article class="task-form-project">
           <label for="project">Project</label>
-          <select name="Project" id="project">
+          <select #project="ngModel" ngModel name="project" id="project" [class.error-border]="(project.touched && project.value.length == 0) || isProjectUnSelected" required [minlength]="1">
             <ng-template #loadedPr>
               <option value="" selected hidden>Choose</option>
               <option *ngFor="let project of projectAccountOwner" value="{{project.id}}">{{project.title}}</option>
@@ -41,7 +41,7 @@
           <article class="task-form-priority">
             <label for="priority">Priority</label>
 
-            <select name="" id="priority">
+            <select #priority (change)="priorityText=priority.value" name="priority" id="priority">
               <ng-template #loadingPriority>
                 <option value="">Loading</option>
               </ng-template>
@@ -62,7 +62,7 @@
 
           <article class="task-form-board">
             <label for="board">Board</label>
-            <select #boardSelect name="" id="board" (change)="populateAssignedTo(boardSelect.value)">
+            <select #boardB name="board" id="board" (change)="populateAssignedTo(boardB.value)" [class.error-border]="isBoardUnSelected">
 
 
               <ng-template #loadingBoard>
@@ -85,10 +85,9 @@
         </article>
 
         <article class="task-form-flex">
-          <!--TODO -> DO IT-->
           <article class="task-form-assignedto">
-            <label for="assignedto">Assigned to</label>
-            <select name="assignedto" id="assignedto">
+            <label for="assignedTo">Assigned to</label>
+            <select #assignedToS name="assignedTo" id="assignedTo" (change)="assignedToIndex = assignedToS.value">
 
               <ng-template #loadingAssignedTo>
                 <option value="">Loading</option>
@@ -114,7 +113,7 @@
 
           <article class="task-form-status">
             <label for="status">Status</label>
-            <select name="" id="status">
+            <select #status name="status" id="status"  (change)="statusText=status.value">
 
               <ng-template #loadingStatus>
                 <option value="">Loading</option>
@@ -140,11 +139,31 @@
 
 
         <article class="task-form-type">
-          <input type="text" name="" id="" placeholder="Type">
+<!--          <input #type="ngModel" ngModel type="text" name="type" id="type" placeholder="Type" >-->
+          <label for="type">Type</label>
+          <select #type name="type" id="type" (change)=" typeSelectedText = type.value" [class.error-border]="isTypeIncorrect">
+
+
+            <ng-template #loadingType>
+              <option value="">Please wait while loading</option>
+            </ng-template>
+
+            <ng-template #emptyType>empty board</ng-template>
+
+            <ng-template #showType>
+              <option value="" selected hidden>Choose</option>
+              <option *ngFor="let type of enums?.type | divideString:'_'" value="{{type}}">{{type}}</option>
+            </ng-template>
+
+            <ng-container
+              [ngTemplateOutlet]="enums?.type === undefined ? loadingType : enums?.type?.length == 0 ? emptyType : showType"></ng-container>
+
+          </select>
+
         </article>
 
         <article class="task-form-story-point">
-          <input type="number" name="" id="" placeholder="Story point">
+          <input #point="ngModel" ngModel type="number" name="point" id="point" placeholder="Story point">
         </article>
 
         <article class="task-form-description">
@@ -153,11 +172,11 @@
             <h1 class="no-margin">characters : <span>255</span></h1>
           </article>
 
-          <textarea name="" id="" rows="4" placeholder="Description"></textarea>
+          <textarea #description="ngModel" ngModel name="description" id="description" rows="4" placeholder="Description"></textarea>
         </article>
 
         <article class="error-text">
-          <p class="no-margin">Please check red border/s</p>
+          <p class="no-margin" [innerText]="errorText" *ngIf="errorText.length > 0"></p>
         </article>
 
         <article class="task-form-submit-btn">

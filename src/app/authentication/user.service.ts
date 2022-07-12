@@ -111,4 +111,13 @@ export class UserService {
     })
   }
 
+  createTask(data:{project:number,title:string,point:number,description:string},board:number,type:string,assignedTo:number,priority:string,status:string) {
+      console.log(data.title)
+    return this.http.post(`${wanConnection}/task/create`,{project:data.project,title:data.title,storyPoints:data.point,description:data.description,board:board,type:type,assignedTo:assignedTo,priority:priority,status:status},{
+      observe:"response",
+      withCredentials: true,
+      responseType: 'json'
+    })
+  }
+
 }

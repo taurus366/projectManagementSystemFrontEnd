@@ -13,7 +13,7 @@ export class ParamGuardProfileActive implements CanActivate {
 
     const {authenticationRequired, authenticationFailureRedirectUrl} = route.data;
 
-    if (!authenticationRequired) {
+    if (!authenticationRequired || this.booleanService.user?.email != undefined) {
       return true;
     }
 
