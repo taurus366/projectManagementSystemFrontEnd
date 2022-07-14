@@ -14,10 +14,12 @@
     <nav class="nav-article-nav" *ngIf="isShowMenuBar">
       <ul>
         <li><a href="" routerLink="/profile" (click)="preventDefault($event);hideMenuBar()">Profile</a></li>
-        <li><a href=""  (click)="preventDefault($event);hideMenuBar()">Participated Borders</a></li>
-        <li><a href=""  (click)="preventDefault($event);hideMenuBar()">Own Borders</a></li>
-        <li><a href="" (click)="preventDefault($event);hideMenuBar()">Own Tasks</a></li>
-        <li><a href="" (click)="preventDefault($event);hideMenuBar()">Own Projects</a></li>
+        <li><a href="" routerLink="/table/participate/board"  (click)="preventDefault($event);hideMenuBar()">Participated Boards</a></li>
+        <li><a href="" routerLink="/table/own/board" (click)="preventDefault($event);hideMenuBar()">Own Boards</a></li>
+<!--        <li><a href="" routerLink="/table/boards/task" (click)="preventDefault($event);hideMenuBar()">Board's Task</a></li>-->
+        <li><a href="" routerLink="/table/own/task" (click)="preventDefault($event);hideMenuBar()">Reported Tasks</a></li>
+        <li><a href="" routerLink="/table/own/project" (click)="preventDefault($event);hideMenuBar()">Own Projects</a></li>
+        <li><a href="" routerLink="/search" (click)="preventDefault($event);hideMenuBar()">Search Task</a></li>
         <li><a href="" (click)="preventDefault($event);hideMenuBar();logout()">Log out</a></li>
       </ul>
     </nav>

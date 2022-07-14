@@ -1,0 +1,122 @@
+<div class="tables-container">
+
+  <section class="project-table" *ngIf="isOwn && isProject">
+
+    <article class="project-table-title">
+
+      <h1 class="table-title">
+        Projects
+      </h1>
+
+    </article>
+
+    <article class="project-table-table">
+
+      <table>
+        <tbody>
+        <tr>
+          <th>Title</th>
+          <th>Key</th>
+          <th>Task Size</th>
+          <th>Edit</th>
+        </tr>
+        <tr *ngFor="let project of projects">
+          <td>{{project.title}}</td>
+          <td>{{project.key}}</td>
+          <td>{{project.taskSize}}</td>
+          <td class="project-table-table-edit">
+            <a class="first" href="">Edit</a>
+            <a class="second" *ngIf="project.owner" (click)="deleteProjectById(project.id);preventDefault($event)" href="">Delete</a>
+          </td>
+        </tr>
+
+        </tbody>
+      </table>
+
+    </article>
+
+  </section>
+
+  <section class="task-table" *ngIf="isOwn && isTask">
+
+
+    <article class="task-table-title">
+
+      <h1 class="table-title">
+        Tasks
+      </h1>
+
+    </article>
+
+    <article class="task-table-table">
+
+      <table>
+        <tbody>
+        <tr>
+          <th>Title</th>
+          <th>AssignedTo</th>
+          <th>Project Name</th>
+          <th>ReportedBy</th>
+          <th>Status</th>
+          <th>Priority</th>
+          <th>Edit</th>
+        </tr>
+        <tr *ngFor="let task of tasks">
+          <th>{{task.taskTitle}}</th>
+          <th>{{task.assignedTo}}</th>
+          <th>{{task.projectName}}</th>
+          <th>{{task.reportedBy}}</th>
+          <th>{{task.status}}</th>
+          <th>{{task.priority}}</th>
+          <th class="task-table-table-edit">
+            <a class="first" href="">edit</a>
+            <a class="second" href="">delete</a>
+            <a class="third" href="">project</a>
+          </th>
+        </tr>
+        </tbody>
+      </table>
+
+    </article>
+
+
+  </section>
+
+  <section class="board-table" *ngIf="isOwn && isBoard || isParticipateBoard">
+
+    <article class="board-table-title">
+
+      <h1 class="table-title">
+        Boards
+      </h1>
+
+    </article>
+
+    <article class="board-table-table">
+
+      <table>
+        <tbody>
+        <tr>
+          <th>Name</th>
+          <th>Task Size</th>
+          <th>Project Size</th>
+          <th>Members Size</th>
+          <th>Edit</th>
+        </tr>
+        <tr *ngFor="let board of boards">
+          <td>{{board.name}}</td>
+          <td>{{board.taskSize}}</td>
+          <td>{{board.projectSize}}</td>
+          <td>{{board.memberSize}}</td>
+          <td class="board-table-table-edit">
+            <a class="first" routerLink="/edit/board/{{board.id}}" href="">edit/view-members</a>
+            <a *ngIf="board.owner" class="second" href="" (click)="deleteBoardById(board.id);preventDefault($event)">delete</a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+
+    </article>
+
+  </section>
+</div>

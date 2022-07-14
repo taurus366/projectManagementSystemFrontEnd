@@ -1,0 +1,95 @@
+.tables-container {
+  text-align: center;
+}
+
+/* PROJECT TABLE - START */
+
+.project-table-table > table > tbody > tr > th {
+  width: 25%;
+}
+
+
+
+.project-table-table-edit > a:last-child {
+  color: red;
+}
+
+/* PROJECT TABLE - END */
+
+/* TASK TABLE - START */
+.task-table-table > table > tbody > tr > th {
+  width: 15%;
+}
+
+.task-table-table-edit > a.second {
+  color: red;
+}
+
+.task-table-table-edit > a.third {
+  color: green;
+}
+
+
+
+/* TASK TABLE - END */
+
+/* BOARD TABLE - START */
+
+.board-table-table > table > tbody > tr > th {
+  width: 20%;
+}
+
+.board-table-table-edit > a.second {
+  color: red;
+}
+
+/* BOARD TABLE - END */
+
+
+/* PUBLIC ------------------------------------ */
+
+.project-table,
+.task-table,
+.board-table {
+  background-color: white;
+  margin: auto;
+  border-radius: 5px;
+}
+
+.table-title {
+  font-family: 'Arima', cursive;
+  font-size: 25px;
+}
+
+.project-table-table,
+.task-table-table,
+.board-table-table {
+  border-top: 2px solid black;
+  padding: 5px;
+  height: 350px;
+  overflow: auto;
+  width: 95%;
+  margin: auto;
+}
+
+.project-table-table > table,
+.task-table-table > table,
+.board-table-table > table {
+  width: 100%;
+}
+
+.project-table-table-edit > a,
+.task-table-table-edit > a,
+.board-table-table-edit > a {
+  margin: 0 5px 0 5px;
+  text-decoration: none;
+
+}
+
+.project-table-table-edit > a.first,
+.task-table-table-edit > a.first,
+.board-table-table-edit > a.first {
+  color: black;
+}
+
+/* PUBLIC ----------------------------------------------------------- */

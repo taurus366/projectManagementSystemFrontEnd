@@ -7,6 +7,8 @@ import {ParamGuardLoginRegisterActive} from "./shared/guard/param-guard-login-re
 import {ProjectComponent} from "./project/project.component";
 import {BoardComponent} from "./board/board.component";
 import {TaskComponent} from "./task/task.component";
+import {TablesComponent} from "./tables/tables.component";
+import {SearchComponent} from "./search/search.component";
 
 const routes: Routes = [
 
@@ -61,6 +63,15 @@ const routes: Routes = [
     }
   },
   {
+    path: ':type/board/:id',
+    component: BoardComponent,
+    canActivate: [ParamGuardProfileActive],
+    data: {
+      authenticationRequired: true,
+      authenticationFailureRedirectUrl: "/"
+    }
+  },
+  {
     path: ':type/task',
     component: TaskComponent,
     canActivate: [ParamGuardProfileActive],
@@ -68,8 +79,36 @@ const routes: Routes = [
       authenticationRequired: true,
       authenticationFailureRedirectUrl: "/"
     }
-  }
-  ,
+  },
+  // TABLES START
+  {
+    path: 'table/:type/:which/:id/:who',
+    component: TablesComponent,
+    canActivate: [ParamGuardProfileActive],
+    data: {
+      authenticationRequired: true,
+      authenticationFailureRedirectUrl: "/profile"
+    }
+  },
+  {
+    path: 'table/:type/:which',
+    component: TablesComponent,
+    canActivate: [ParamGuardProfileActive],
+    data: {
+      authenticationRequired: true,
+      authenticationFailureRedirectUrl: "/profile"
+    }
+  },
+  // TABLES END
+  {
+    path: 'search',
+    component: SearchComponent,
+    canActivate: [ParamGuardProfileActive],
+    data: {
+      authenticationRequired: true,
+      authenticationFailureRedirectUrl: "/profile"
+    }
+  },
   {
     path: '**',
     component: LoginComponent

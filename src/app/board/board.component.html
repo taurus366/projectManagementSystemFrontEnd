@@ -29,7 +29,7 @@
               <td>{{users.firstName}}</td>
               <td>{{users.lastName}}</td>
               <td>{{users.email}}</td>
-              <td><a href="#" class="table-edit-user-btn remove"
+              <td *ngIf="usersToAdd != undefined && usersToAdd.length >= 2"><a href="#" class="table-edit-user-btn remove"
                      (click)="removeUserFromBoard(users);preventDefault($event)"><i class="fa fa-times"></i></a></td>
             </tr>
 
@@ -84,14 +84,22 @@
 
     <article class="board-form-article">
 
-      <form #form="ngForm" action="" method="post" (ngSubmit)="createBoard(form)">
+      <form #form="ngForm" action="" method="post" (ngSubmit)="isEditBoard == true ? editBoardTable(form) :createBoard(form)">
 
         <article class="board-form-name">
-          <input #name="ngModel" ngModel type="text" name="name" id="name" placeholder="Name" [class.error-border]="(name.touched && (name.value.length < 3 || name.value.length > 255)) || isNameIncorrect" [minlength]="3" [maxLength]="255" required>
+          <input #name="ngModel" ngModel="{{editBoard?.name}}" type="text" name="name" id="name" placeholder="Name" [class.error-border]="(name.touched && (name.value.length < 3 || name.value.length > 255)) || isNameIncorrect" [minlength]="3" [maxLength]="255" required>
         </article>
 
+        <ng-template #showEdit>
+          <input type="submit" value="Save">
+        </ng-template>
+
+        <ng-template #showCreate>
+          <input type="submit" value="Create">
+        </ng-template>
+
         <article class="board-form-submit-btn">
-          <input type="submit" value="Create / Save">
+         <ng-container [ngTemplateOutlet]="editBoard ? showEdit : showCreate"></ng-container>
         </article>
       </form>
 

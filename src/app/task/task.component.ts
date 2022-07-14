@@ -180,7 +180,7 @@ export class TaskComponent implements OnInit {
     }
 
   this.userService
-    .createTask(form.value,this.boardIndex,this.typeSelectedText.replace(" ","_"),parseInt(this.assignedToIndex),this.priorityText.replace(" ","_"),this.statusText.replace(" ","_"))
+    .createTask(form.value,this.boardIndex,this.typeSelectedText.replace(" ","_"),parseInt(this.assignedToIndex) ,this.priorityText.replace(" ","_"),this.statusText.replace(" ","_"))
     .subscribe({
       next:value => {},
       error:err => {

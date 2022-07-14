@@ -3,8 +3,8 @@ import {ActivatedRoute} from "@angular/router";
 import {UserService} from "../authentication/user.service";
 import {BooleansAndMethodsService} from "../shared/booleansAndMethods.service";
 import {NgForm} from "@angular/forms";
-import {IBOARD} from "../shared/interfaces/IBOARD";
 import {IUSER} from "../shared/interfaces/IUSER";
+import {IEDITBOARD} from "../shared/interfaces/IEDITBOARD";
 
 const navigateAfterCreateBoard: string = "/profile";
 
@@ -28,11 +28,16 @@ export class BoardComponent implements OnInit {
   usersFromDB: IUSER[] | undefined;
   usersToAdd: IUSER[] | undefined;
 
+  editBoard: IEDITBOARD | undefined;
+
   errorText: string = "";
 
   ngOnInit(): void {
-    this.chooseEditOrCreate();
-    this.populateUsersForCreate();
+    this.chooseEditOrCreate()
+      .then(value => {
+        this.populateUsersForCreate();
+      })
+
   }
 
   preventDefault($event: MouseEvent): void {
@@ -40,32 +45,61 @@ export class BoardComponent implements OnInit {
       .preventDefault($event);
   }
 
-  chooseEditOrCreate(): void {
-    this.activeRoute.params.subscribe(({type}) => {
-      switch (type) {
-        case "edit":
-          this.isEditBoard = true;
-          break;
-        case "create":
-          this.isEditBoard = false;
-          break;
-      }
+  chooseEditOrCreate(): Promise<any> {
+    return new Promise<void>((resolve, reject) => {
+
+      this.activeRoute.params.subscribe(({type, id}) => {
+          switch (type) {
+            case "edit":
+              this.isEditBoard = true;
+              this.populateEditBoard(id)
+                .then(value => {
+                  resolve();
+                })
+              break;
+            case "create":
+              this.isEditBoard = false;
+              resolve();
+              break;
+          }
+        }
+      )
+
     })
+  }
+
+  populateEditBoard(boardId: number): Promise<any> {
+
+    return new Promise<void>(((resolve, reject) => this.userService
+      .populateEditBoard(boardId)
+      .subscribe({
+        next: value => {
+          if (value.body != null) {
+            this.editBoard = value.body;
+          }
+        },
+        error: err => {
+        },
+        complete: () => {
+          this.usersToAdd = this.editBoard?.members;
+          resolve();
+        }
+      })));
+
   }
 
   createBoard(form: NgForm) {
     this.restartAllFields();
-    if (this.usersToAdd == undefined || this.usersToAdd.length == 0){
+    if (this.usersToAdd == undefined || this.usersToAdd.length == 0) {
       this.errorText = "Please add at least one person to board";
       this.isUsersToAddIncorrect = true;
       return;
-    }else {
+    } else {
       this.isUsersToAddIncorrect = false;
       this.errorText = "";
     }
 
     if (form.invalid) {
-      console.log("err")
       let formControl = form.controls;
 
       switch (formControl['name'].status) {
@@ -81,11 +115,56 @@ export class BoardComponent implements OnInit {
     }
 
     this.userService
-      .createNewBoard({name:form.value.name,members:this.usersToAdd})
+      .createNewBoard({name: form.value.name, members: this.usersToAdd})
       .subscribe({
-        next:value => {},
-        error:err => {},
-        complete:() => {
+        next: value => {
+        },
+        error: err => {
+        },
+        complete: () => {
+          this.sharedService
+            .navigate("/profile");
+        }
+      })
+
+
+  }
+
+  editBoardTable(form: NgForm) {
+    this.restartAllFields();
+
+    if (this.usersToAdd == undefined || this.usersToAdd.length == 0) {
+      this.errorText = "Please add at least one person to board";
+      this.isUsersToAddIncorrect = true;
+      return;
+    } else {
+      this.isUsersToAddIncorrect = false;
+      this.errorText = "";
+    }
+
+    if (form.invalid) {
+      let formControl = form.controls;
+
+      switch (formControl['name'].status) {
+        case "INVALID":
+          this.isNameIncorrect = true;
+          this.errorText = "Please check Name";
+          break;
+        case "VALID":
+          this.isNameIncorrect = false;
+          break;
+      }
+      return;
+    }
+
+    this.userService
+      .editCurrentBoard(this.editBoard!.id,{name: form.value.name, members: this.usersToAdd})
+      .subscribe({
+        next: value => {
+        },
+        error: err => {
+        },
+        complete: () => {
           this.sharedService
             .navigate("/profile");
         }
@@ -131,6 +210,13 @@ export class BoardComponent implements OnInit {
 
         },
         complete: () => {
+
+          if (this.editBoard != null) {
+            this.usersToAdd
+              ?.forEach(value => {
+                this.usersFromDB = this.usersFromDB?.filter(value2 => value.id !== value2.id);
+              })
+          }
         }
       })
   }
@@ -145,6 +231,7 @@ export class BoardComponent implements OnInit {
     }
     this.addUserToBoardRemoveFromDB(user);
   }
+
   addUserToBoardRemoveFromDB(user: IUSER) {
     // @ts-ignore
     this.usersFromDB = this.usersFromDB.filter(value => value.id !== user.id);
@@ -157,6 +244,7 @@ export class BoardComponent implements OnInit {
 
     this.addUserToUsersFromDB(user);
   }
+
   addUserToUsersFromDB(user: IUSER) {
     if (this.usersFromDB == undefined) {
       this.usersFromDB = [user];
@@ -166,7 +254,7 @@ export class BoardComponent implements OnInit {
   }
 
 
-  private restartAllFields():void {
+  private restartAllFields(): void {
     this.isUsersToAddIncorrect = false;
     this.isEditBoard = false;
     this.errorText = "";

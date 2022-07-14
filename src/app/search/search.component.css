@@ -1,0 +1,36 @@
+.search-container {
+  text-align: center;
+}
+
+.search-result-section {
+
+  background-color: white;
+  margin: 10px auto auto auto;
+  border-radius: 5px;
+}
+
+.search-section-table-article-btn {
+  margin-top: 5px;
+}
+
+.search-section-table-article-btn > input {
+  width: 100px;
+}
+
+.search-result-table {
+
+  border-top: 2px solid black;
+  padding: 5px;
+  height: 350px;
+  overflow: auto;
+  width: 95%;
+  margin: auto;
+}
+
+.search-result-table > table {
+  width: 100%;
+}
+
+.search-result-table > table > tbody > tr > th {
+  width: 15%;
+}

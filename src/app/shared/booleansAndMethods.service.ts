@@ -36,6 +36,12 @@ export class BooleansAndMethodsService {
   // HERE I CHECK IF THE USER HAS RELOADED HIS BROWSER PAGE , IF IT DID I WILL UPDATE AGAIN HIS INFO INTO BROWSER !
   checkUserInfoExistsThenUpdate():Promise<any> {
 
+    // if (this._user?.email !== undefined){
+    //   return new Promise<void>((resolve, reject) => {
+    //     resolve();
+    //   });
+    // }
+
    return  new Promise<void>((resolve, reject) => {
       this.userService
         .populateUserInfo()

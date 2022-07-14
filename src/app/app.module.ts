@@ -12,6 +12,8 @@ import { BoardComponent } from './board/board.component';
 import {CommonModule} from "@angular/common";
 import { TaskComponent } from './task/task.component';
 import {SharedModule} from "./shared/shared.module";
+import { TablesComponent } from './tables/tables.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import {SharedModule} from "./shared/shared.module";
     HeaderComponent,
     ProjectComponent,
     BoardComponent,
-    TaskComponent
+    TaskComponent,
+    TablesComponent,
+    SearchComponent
   ],
   imports: [
     CommonModule,

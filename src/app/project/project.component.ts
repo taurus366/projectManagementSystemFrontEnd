@@ -41,7 +41,6 @@ export class ProjectComponent implements OnInit {
     })
   }
 
-
   createProject(form: NgForm) {
 
     this.restartAllFields();

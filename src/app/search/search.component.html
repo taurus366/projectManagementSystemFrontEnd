@@ -1,0 +1,49 @@
+<div class="search-container">
+  <section class="search-section">
+
+    <article class="search-section-title">
+      <h2 class="h2-title">Search</h2>
+    </article>
+
+    <article class="search-section-table-article">
+      <input #title type="text" name="title" id="title" placeholder="Title">
+      <input #type type="text" name="type" id="type" placeholder="Type">
+      <input #assignedTo type="text" name="assignedTo" id="assignedTo" placeholder="Assigned To">
+    </article>
+
+    <article class="search-section-table-article-btn">
+      <input type="button" value="Search" (click)="searchForTask(title.value,type.value,assignedTo.value)">
+    </article>
+
+  </section>
+
+  <section class="search-result-section">
+
+    <article class="search-result-table">
+
+      <table>
+        <tbody>
+        <tr>
+          <th>Title</th>
+          <th>Assigned To</th>
+          <th>Project Name</th>
+          <th>Reported By</th>
+          <th>Status</th>
+          <th>Priority</th>
+        </tr>
+        <tr *ngFor="let task of tasks">
+          <td>{{task.taskTitle}}</td>
+          <td>{{task.assignedTo}}</td>
+          <td>{{task.projectName}}</td>
+          <td>{{task.reportedBy}}</td>
+          <td>{{task.status}}</td>
+          <td>{{task.priority}}</td>
+        </tr>
+
+        </tbody>
+      </table>
+
+    </article>
+
+  </section>
+</div>
